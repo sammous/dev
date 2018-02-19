@@ -1,5 +1,11 @@
+- name: Updating setuptools to install Jupyter
+  pip:
+    name: setuptools
+    state: latest
+
 - name: Installation of Jupyter server
   pip:
     name: jupyter
-    state: present
-    tags: [jupyter]
+    state: latest
+    virtualenv:
+  tags: [jupyter]
