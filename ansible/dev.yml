@@ -1,0 +1,7 @@
+- hosts: localhost
+  remote_user: vagrant
+  become: true
+  roles:
+    - docker
+    - mongodb
+    - jupyter

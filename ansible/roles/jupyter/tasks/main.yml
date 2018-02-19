@@ -1,0 +1,5 @@
+- name: Installation of Jupyter server
+  pip:
+    name: jupyter
+    state: present
+    tags: [jupyter]
