@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
      vb.memory = "1024"
-     vb.name = "dev3"
+     vb.name = "dev"
   end
 
 #Python env installation
@@ -22,14 +22,19 @@ $python = <<SCRIPT
         mercurial build-essential python-dev zlib1g-dev \
         zlib1g zlibc libtool libffi-dev libssl-dev libpq-dev libgeoip-dev \
         libxml2-dev libxslt1-dev libbz2-dev libsqlite3-dev libreadline-dev \
-        libjpeg-dev
+        libjpeg-dev python3-pip python-pip
     echo "Configuring virtualenvwrapper ..."
     printf '\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n' 'export PIP_REQUIRE_VIRTUALENV=true' \
-        'export WORKON_HOME=/vagrant/.virtualenvs' \
-        'export PROJECT_HOME=/vagrant' \
+        'export WORKON_HOME=/home/sami/.virtualenvs' \
+        'export PROJECT_HOME=/home/sami/Documents' \
         'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python' \
         'export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv' \
-        'source /usr/share/virtualenvwrapper/virtualenvwrapper.sh' >> /home/vagrant/.bashrc
+        'source /usr/share/virtualenvwrapper/virtualenvwrapper.sh' >> /home/sami/.zshrc
+    echo "installing pyenv..."
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /home/vagrant/.bashrc
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /home/vagrant/.bashrc
+    echo 'eval "$(pyenv init -)"' >> /home/vagrant/.bashrc
+    echo 'pyenv virtualenvwrapper' >> /home/vagrant/.bashrc 
     source /home/vagrant/.bashrc
 SCRIPT
 
